@@ -1,0 +1,81 @@
+<!-- templates/admin/add_destination.html -->
+{% extends "base.html" %}
+
+{% block title %}Add Destination - Luxury Travel{% endblock %}
+
+{% block content %}
+<div class="pt-20 pb-16">
+    <div class="container mx-auto px-6 max-w-4xl">
+        <h1 class="text-4xl font-thin mb-8">Add New Destination</h1>
+
+        <div class="bg-[#1E293B] rounded-2xl p-8">
+            <form method="POST">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="name" class="block text-[#94A3B8] mb-2">Destination Name</label>
+                        <input type="text" id="name" name="name"
+                            class="w-full bg-[#0F172A] border border-[#334155] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-white"
+                            required>
+                    </div>
+
+                    <div>
+                        <label for="location" class="block text-[#94A3B8] mb-2">Location</label>
+                        <input type="text" id="location" name="location"
+                            class="w-full bg-[#0F172A] border border-[#334155] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-white"
+                            required>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="description" class="block text-[#94A3B8] mb-2">Description</label>
+                    <textarea id="description" name="description" rows="4"
+                        class="w-full bg-[#0F172A] border border-[#334155] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-white"
+                        required></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="image_url" class="block text-[#94A3B8] mb-2">Image URL</label>
+                        <input type="url" id="image_url" name="image_url"
+                            class="w-full bg-[#0F172A] border border-[#334155] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-white"
+                            required>
+                    </div>
+
+                    <div>
+                        <label for="price" class="block text-[#94A3B8] mb-2">Price ($)</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0"
+                            class="w-full bg-[#0F172A] border border-[#334155] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-white"
+                            required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label for="rating" class="block text-[#94A3B8] mb-2">Rating (0-5)</label>
+                        <input type="number" id="rating" name="rating" step="0.1" min="0" max="5"
+                            class="w-full bg-[#0F172A] border border-[#334155] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0284C7] text-white"
+                            required>
+                    </div>
+
+                    <div class="flex items-center">
+                        <input type="checkbox" id="featured" name="featured"
+                            class="w-5 h-5 text-[#0284C7] bg-[#0F172A] border-[#334155] rounded focus:ring-[#0284C7] focus:ring-2">
+                        <label for="featured" class="ml-2 text-[#94A3B8]">Featured Destination</label>
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <button type="submit"
+                        class="bg-[#F97316] hover:bg-[#EA580C] text-white px-8 py-3 rounded-lg transition-colors">
+                        Add Destination
+                    </button>
+                    <a href="/admin/destinations"
+                        class="bg-[#64748B] hover:bg-[#475569] text-white px-8 py-3 rounded-lg transition-colors">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

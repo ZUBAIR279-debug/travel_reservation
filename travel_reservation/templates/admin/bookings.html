@@ -1,0 +1,46 @@
+<!-- templates/admin/bookings.html -->
+{% extends "base.html" %}
+
+{% block title %}Manage Bookings - Luxury Travel{% endblock %}
+
+{% block content %}
+<div class="pt-20 pb-16">
+    <div class="container mx-auto px-6">
+        <h1 class="text-4xl font-thin mb-8">Manage Bookings</h1>
+
+        <div class="bg-[#1E293B] rounded-2xl overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-[#0F172A]">
+                            <th class="px-6 py-4 text-left">Booking ID</th>
+                            <th class="px-6 py-4 text-left">User</th>
+                            <th class="px-6 py-4 text-left">Destination</th>
+                            <th class="px-6 py-4 text-left">Travel Date</th>
+                            <th class="px-6 py-4 text-left">Guests</th>
+                            <th class="px-6 py-4 text-left">Total Price</th>
+                            <th class="px-6 py-4 text-left">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr class="border-b border-[#334155] last:border-0">
+                            <td class="px-6 py-4">#{{ booking.id }}</td>
+                            <td class="px-6 py-4">{{ booking.user.username }}</td>
+                            <td class="px-6 py-4">{{ booking.destination.name }}</td>
+                            <td class="px-6 py-4">{{ booking.travel_date.strftime('%b %d, %Y') }}</td>
+                            <td class="px-6 py-4">{{ booking.guests }}</td>
+                            <td class="px-6 py-4">${{ booking.total_price }}</td>
+                            <td class="px-6 py-4">
+                                <span class="bg-[#0284C7] text-white px-3 py-1 rounded-full text-sm">{{ booking.status
+                                    }}</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

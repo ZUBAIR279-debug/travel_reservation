@@ -1,0 +1,51 @@
+<!-- templates/my_bookings.html -->
+{% extends "base.html" %}
+
+{% block title %}My Bookings - Luxury Travel{% endblock %}
+
+{% block content %}
+<div class="pt-20 pb-16">
+    <div class="container mx-auto px-6">
+        <h1 class="text-4xl font-thin mb-8">My Bookings</h1>
+
+        {% if bookings %}
+        <div class="grid grid-cols-1 gap-6">
+            {% for booking in bookings %}
+            <div class="bg-[#1E293B] rounded-2xl p-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="text-xl font-semibold">{{ booking.destination.name }}</h3>
+                        <p class="text-[#94A3B8]">{{ booking.destination.location }}</p>
+                        <div class="flex items-center mt-2">
+                            <span class="bg-[#0284C7] text-white px-3 py-1 rounded-full text-sm mr-2">{{
+                                booking.status|title }}</span>
+                            <span class="text-[#94A3B8]">Travel Date: {{ booking.travel_date.strftime('%B %d, %Y')
+                                }}</span>
+                        </div>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-2xl font-bold text-[#F97316]">${{ booking.total_price }}</p>
+                        <p class="text-[#94A3B8]">{{ booking.guests }} guest{% if booking.guests > 1 %}s{% endif %}</p>
+                        <p class="text-[#94A3B8] text-sm">Booked on {{ booking.booking_date.strftime('%B %d, %Y') }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-16">
+            <svg class="w-24 h-24 text-[#334155] mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <h3 class="text-2xl font-thin mb-4">No Bookings Yet</h3>
+            <p class="text-[#94A3B8] mb-8">Start planning your next luxury getaway!</p>
+            <a href="/" class="bg-[#F97316] hover:bg-[#EA580C] text-white px-6 py-3 rounded-lg transition-colors">
+                Explore Destinations
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

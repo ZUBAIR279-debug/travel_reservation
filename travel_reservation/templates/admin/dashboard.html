@@ -1,0 +1,121 @@
+<!-- templates/admin/dashboard.html -->
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Luxury Travel{% endblock %}
+
+{% block content %}
+<div class="pt-20 pb-16">
+    <div class="container mx-auto px-6">
+        <h1 class="text-4xl font-thin mb-8">Admin Dashboard</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-[#1E293B] rounded-2xl p-6">
+                <div class="flex items-center">
+                    <div class="bg-[#0284C7] rounded-lg p-3 mr-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-[#94A3B8]">Total Users</p>
+                        <p class="text-3xl font-bold">{{ total_users }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#1E293B] rounded-2xl p-6">
+                <div class="flex items-center">
+                    <div class="bg-[#F97316] rounded-lg p-3 mr-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-[#94A3B8]">Destinations</p>
+                        <p class="text-3xl font-bold">{{ total_destinations }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#1E293B] rounded-2xl p-6">
+                <div class="flex items-center">
+                    <div class="bg-[#10B981] rounded-lg p-3 mr-4">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-[#94A3B8]">Total Bookings</p>
+                        <p class="text-3xl font-bold">{{ total_bookings }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-[#1E293B] rounded-2xl p-6">
+                <h2 class="text-2xl font-thin mb-6">Recent Bookings</h2>
+                {% if recent_bookings %}
+                <div class="space-y-4">
+                    {% for booking in recent_bookings %}
+                    <div class="flex justify-between items-center py-3 border-b border-[#334155] last:border-0">
+                        <div>
+                            <p class="font-semibold">{{ booking.destination.name }}</p>
+                            <p class="text-[#94A3B8] text-sm">{{ booking.user.username }} • {{
+                                booking.travel_date.strftime('%b %d, %Y') }}</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-[#F97316]">${{ booking.total_price }}</p>
+                            <span class="bg-[#0284C7] text-white px-2 py-1 rounded-full text-xs">{{ booking.status
+                                }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-[#94A3B8] text-center py-8">No recent bookings</p>
+                {% endif %}
+            </div>
+
+            <div class="bg-[#1E293B] rounded-2xl p-6">
+                <h2 class="text-2xl font-thin mb-6">Quick Actions</h2>
+                <div class="space-y-4">
+                    <a href="/admin/destinations"
+                        class="flex items-center p-4 bg-[#0F172A] rounded-lg hover:bg-[#1E293B] transition-colors">
+                        <svg class="w-6 h-6 text-[#0284C7] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>Manage Destinations</span>
+                    </a>
+
+                    <a href="/admin/bookings"
+                        class="flex items-center p-4 bg-[#0F172A] rounded-lg hover:bg-[#1E293B] transition-colors">
+                        <svg class="w-6 h-6 text-[#F97316] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>View All Bookings</span>
+                    </a>
+
+                    <a href="/admin/add_destination"
+                        class="flex items-center p-4 bg-[#0F172A] rounded-lg hover:bg-[#1E293B] transition-colors">
+                        <svg class="w-6 h-6 text-[#10B981] mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        <span>Add New Destination</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

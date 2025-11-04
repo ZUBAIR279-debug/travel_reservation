@@ -1,0 +1,17 @@
+<!-- templates/error.html -->
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - Luxury Travel{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center pt-20 pb-16">
+    <div class="text-center">
+        <h1 class="text-9xl font-thin text-[#0284C7]">404</h1>
+        <h2 class="text-3xl font-thin mb-4">Page Not Found</h2>
+        <p class="text-[#94A3B8] mb-8 max-w-md">The page you're looking for doesn't exist or has been moved.</p>
+        <a href="/" class="bg-[#F97316] hover:bg-[#EA580C] text-white px-6 py-3 rounded-lg transition-colors">
+            Return Home
+        </a>
+    </div>
+</div>
+{% endblock %}
